@@ -1,0 +1,150 @@
+[dotenv@17.3.1] injecting env (4) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+{
+  "id": "in_1T9kBTC0FYVrF9iP6Flh43qe",
+  "object": "invoice",
+  "account_country": "US",
+  "account_name": "Bittar Consulting LLC SandBox",
+  "account_tax_ids": null,
+  "amount_due": 1000,
+  "amount_overpaid": 0,
+  "amount_paid": 0,
+  "amount_remaining": 1000,
+  "amount_shipping": 0,
+  "application": null,
+  "attempt_count": 0,
+  "attempted": false,
+  "auto_advance": false,
+  "automatic_tax": {
+    "disabled_reason": null,
+    "enabled": false,
+    "liability": null,
+    "provider": null,
+    "status": null
+  },
+  "automatically_finalizes_at": null,
+  "billing_reason": "subscription_create",
+  "collection_method": "charge_automatically",
+  "created": 1773225611,
+  "currency": "usd",
+  "custom_fields": null,
+  "customer": "cus_U80ByzXRojxHJk",
+  "customer_account": null,
+  "customer_address": null,
+  "customer_email": null,
+  "customer_name": null,
+  "customer_phone": null,
+  "customer_shipping": null,
+  "customer_tax_exempt": "none",
+  "customer_tax_ids": [],
+  "default_payment_method": null,
+  "default_source": null,
+  "default_tax_rates": [],
+  "description": null,
+  "discounts": [],
+  "due_date": null,
+  "effective_at": 1773225611,
+  "ending_balance": 0,
+  "footer": null,
+  "from_invoice": null,
+  "hosted_invoice_url": "https://invoice.stripe.com/i/acct_1Syd5rC0FYVrF9iP/test_YWNjdF8xU3lkNXJDMEZZVnJGOWlQLF9VODBCYlRET3dKSVdtdWplUFhFYW5MWFNiTDk0MVJ1LDE2Mzc2NjQxMg0200UdpgenSo?s=ap",
+  "invoice_pdf": "https://pay.stripe.com/invoice/acct_1Syd5rC0FYVrF9iP/test_YWNjdF8xU3lkNXJDMEZZVnJGOWlQLF9VODBCYlRET3dKSVdtdWplUFhFYW5MWFNiTDk0MVJ1LDE2Mzc2NjQxMg0200UdpgenSo/pdf?s=ap",
+  "issuer": {
+    "type": "self"
+  },
+  "last_finalization_error": null,
+  "latest_revision": null,
+  "lines": {
+    "object": "list",
+    "data": [
+      {
+        "id": "il_1T9kBSC0FYVrF9iPrMuypgA7",
+        "object": "line_item",
+        "amount": 1000,
+        "currency": "usd",
+        "description": "1 × Monthly Donation (at $10.00 / month)",
+        "discount_amounts": [],
+        "discountable": true,
+        "discounts": [],
+        "invoice": "in_1T9kBTC0FYVrF9iP6Flh43qe",
+        "livemode": false,
+        "metadata": {},
+        "parent": {
+          "invoice_item_details": null,
+          "subscription_item_details": {
+            "invoice_item": null,
+            "proration": false,
+            "proration_details": {
+              "credited_items": null
+            },
+            "subscription": "sub_1T9kBSC0FYVrF9iPR2El04nZ",
+            "subscription_item": "si_U80BDmNIBXym0n"
+          },
+          "type": "subscription_item_details"
+        },
+        "period": {
+          "end": 1775904010,
+          "start": 1773225610
+        },
+        "pretax_credit_amounts": [],
+        "pricing": {
+          "price_details": {
+            "price": "price_1T9kBSC0FYVrF9iPaxg1NrBR",
+            "product": "prod_U7zusCMzqf5gaP"
+          },
+          "type": "price_details",
+          "unit_amount_decimal": "1000"
+        },
+        "quantity": 1,
+        "subtotal": 1000,
+        "taxes": []
+      }
+    ],
+    "has_more": false,
+    "total_count": 1,
+    "url": "/v1/invoices/in_1T9kBTC0FYVrF9iP6Flh43qe/lines"
+  },
+  "livemode": false,
+  "metadata": {},
+  "next_payment_attempt": null,
+  "number": "WNPXRVSF-0001",
+  "on_behalf_of": null,
+  "parent": {
+    "quote_details": null,
+    "subscription_details": {
+      "metadata": {},
+      "subscription": "sub_1T9kBSC0FYVrF9iPR2El04nZ"
+    },
+    "type": "subscription_details"
+  },
+  "payment_settings": {
+    "default_mandate": null,
+    "payment_method_options": null,
+    "payment_method_types": null
+  },
+  "period_end": 1773225610,
+  "period_start": 1773225610,
+  "post_payment_credit_notes_amount": 0,
+  "pre_payment_credit_notes_amount": 0,
+  "receipt_number": null,
+  "rendering": null,
+  "shipping_cost": null,
+  "shipping_details": null,
+  "starting_balance": 0,
+  "statement_descriptor": null,
+  "status": "open",
+  "status_transitions": {
+    "finalized_at": 1773225611,
+    "marked_uncollectible_at": null,
+    "paid_at": null,
+    "voided_at": null
+  },
+  "subtotal": 1000,
+  "subtotal_excluding_tax": 1000,
+  "test_clock": null,
+  "total": 1000,
+  "total_discount_amounts": [],
+  "total_excluding_tax": 1000,
+  "total_pretax_credit_amounts": [],
+  "total_taxes": [],
+  "webhooks_delivered_at": 1773225611
+}

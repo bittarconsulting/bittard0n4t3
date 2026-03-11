@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Our Cause</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-background">
+        <!-- Abstract glowing orbs for background effect -->
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main class="container">
+        <!-- Optional Success / Cancel state messages -->
+        <div id="status-message" class="status-message hidden"></div>
+
+        <form id="payment-form" class="donation-card">
+            <div class="card-left">
+                <div class="card-header">
+                    <img src="BITTAR-04.png" alt="Bittar Consulting LLC Logo" class="brand-logo">
+                    <h1>Make a Difference Today</h1>
+                    <p>Your support empowers us to continue our mission. Every contribution counts.</p>
+                </div>
+
+                <!-- Tabs: One-Time vs Monthly -->
+                <div class="donation-type-toggle">
+                    <button type="button" class="toggle-btn active" data-type="one-time">Give Once</button>
+                    <button type="button" class="toggle-btn" data-type="monthly">Give Monthly</button>
+                </div>
+
+                <div class="amount-selection">
+                    <h3 class="selection-title">Select Amount</h3>
+                    <div class="amount-grid">
+                        <button type="button" class="amount-btn active" data-amount="10">$10</button>
+                        <button type="button" class="amount-btn" data-amount="25">$25</button>
+                        <button type="button" class="amount-btn" data-amount="50">$50</button>
+                        <button type="button" class="amount-btn" data-amount="100">$100</button>
+                    </div>
+
+                    <div class="custom-amount-wrapper">
+                        <div class="input-prefix">$</div>
+                        <input type="number" id="custom-amount" class="custom-amount-input" placeholder="Other amount"
+                            min="1" step="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-right">
+                <!-- Express Checkout Container (Apple Pay / Google Pay) -->
+                <div id="express-checkout-element" class="hidden"></div>
+
+                <div id="express-checkout-divider" class="hidden"
+                    style="display: flex; align-items: center; margin: 16px 0; color: #94a3b8; font-size: 14px;">
+                    <div style="flex: 1; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"></div>
+                    <span style="padding: 0 10px;">or pay with card</span>
+                    <div style="flex: 1; border-bottom: 1px solid rgba(255, 255, 255, 0.1);"></div>
+                </div>
+
+                <!-- Email Collection (Link Authentication Element) -->
+                <div id="link-authentication-element" class="hidden" style="margin-bottom: 12px; margin-top: 16px;">
+                </div>
+
+                <!-- Contact & Address Element -->
+                <div id="address-element" class="hidden" style="margin-bottom: 16px;"></div>
+
+                <!-- Stripe Payment Element -->
+                <div id="payment-element" class="payment-element-container hidden">
+                    <!-- Stripe Elements will be inserted here -->
+                </div>
+                <!-- Error messages from Stripe -->
+                <div id="payment-message" class="hidden"></div>
+
+                <div class="checkout-footer">
+                    <button id="donate-submit-btn" class="primary-btn">
+                        <span class="btn-text">Donate <span id="display-amount">$10</span></span>
+                        <span class="btn-loader hidden">
+                            <svg class="spinner" viewBox="0 0 50 50">
+                                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="secure-badge">
+                        <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7 0L0 3.11111V7.77778C0 11.83 2.98667 15.6111 7 16C11.0133 15.6111 14 11.83 14 7.77778V3.11111L7 0ZM7 4.44444C8.22889 4.44444 9.22222 5.43778 9.22222 6.66667V7.11111H4.77778V6.66667C4.77778 5.43778 5.77111 4.44444 7 4.44444ZM9.66667 7.11111C10.1556 7.11111 10.5556 7.51111 10.5556 8V11.5556C10.5556 12.0444 10.1556 12.4444 9.66667 12.4444H4.33333C3.84444 12.4444 3.44444 12.0444 3.44444 11.5556V8C3.44444 7.51111 3.84444 7.11111 4.33333 7.11111H9.66667Z"
+                                fill="currentColor" />
+                        </svg>
+                        Secure payment via Stripe
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+
+        <footer class="site-footer">
+            <div class="footer-links">
+                <a href="https://eduardobittar.com" class="footer-link" target="_blank">Go to Home</a>
+                <span class="footer-divider">&bull;</span>
+                <a href="https://eduardobittar.com/en/privacy-policy/" class="footer-link" target="_blank">Privacy
+                    Policy</a>
+                <span class="footer-divider">&bull;</span>
+                <a href="https://eduardobittar.com/en/terms-and-conditions/" class="footer-link" target="_blank">Terms &
+                    Conditions</a>
+            </div>
+            <p class="footer-text" style="margin-top: 4px; opacity: 0.7;">&copy; 2026 Bittar Consulting LLC. All rights
+                reserved.</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
