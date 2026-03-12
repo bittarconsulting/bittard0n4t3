@@ -52,7 +52,10 @@ app.post('/create-payment-intent', async (req, res) => {
                 }
             }],
             payment_behavior: 'default_incomplete',
-            payment_settings: { save_default_payment_method: 'on_subscription' },
+            payment_settings: { 
+                payment_method_types: ['card', 'link'],
+                save_default_payment_method: 'on_subscription' 
+            },
             expand: ['latest_invoice.payment_intent'],
         });
         
@@ -74,9 +77,7 @@ app.post('/create-payment-intent', async (req, res) => {
         const paymentIntent = await stripe.paymentIntents.create({
           amount: Math.round(amount * 100),
           currency: 'usd',
-          automatic_payment_methods: {
-            enabled: true,
-          },
+          payment_method_types: ['card', 'link'],
         });
         
         clientSecret = paymentIntent.client_secret;
