@@ -36,47 +36,12 @@ body {
   position: absolute;
   inset: 0;
   z-index: 0;
-  overflow: hidden;
-}
-
-.glow-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.5;
-  animation: float 20s infinite alternate;
-}
-
-.orb-1 {
-  width: 400px;
-  height: 400px;
-  background: var(--primary);
-  top: -10%;
-  left: -10%;
-  animation-delay: 0s;
-}
-
-.orb-2 {
-  width: 500px;
-  height: 500px;
-  background: var(--secondary);
-  bottom: -20%;
-  right: -10%;
-  animation-delay: -5s;
-}
-
-@keyframes float {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate(50px, 30px) scale(1.1);
-  }
-
-  100% {
-    transform: translate(-30px, 60px) scale(0.9);
-  }
+  background-color: var(--background);
+  background-image: url('background.png');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .container {
