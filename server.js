@@ -77,7 +77,7 @@ app.post('/create-payment-intent', async (req, res) => {
         const paymentIntent = await stripe.paymentIntents.create({
           amount: Math.round(amount * 100),
           currency: 'usd',
-          payment_method_types: ['card', 'link'],
+          payment_method_types: ['card', 'link', 'crypto'],
         });
         
         clientSecret = paymentIntent.client_secret;
