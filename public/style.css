@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background-color: var(--background);
   color: var(--text);
   min-height: 100vh;
@@ -116,9 +116,14 @@ body {
   text-align: center;
 }
 
+h1, h2, h3, h4, h5, h6, .selection-title {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+}
+
 .card-header h1 {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 600;
   margin-bottom: 12px;
   background: linear-gradient(to right, #fff, #a5b4fc);
   background-clip: text;

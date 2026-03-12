@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const appearance = {
                 theme: 'night',
                 variables: {
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'Montserrat, sans-serif',
                     fontLineHeight: '1.5',
                     borderRadius: '12px',
                     colorBackground: '#1e293b', 
