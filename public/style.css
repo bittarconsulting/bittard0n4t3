@@ -37,7 +37,7 @@ body {
   inset: 0;
   z-index: 0;
   background-color: var(--background);
-  background-image: url('backgroundPortrait.jpeg');
+  background-image: linear-gradient(rgba(5, 35, 63, 0.7), rgba(5, 35, 63, 0.9)), url('backgroundPortrait.jpeg');
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
