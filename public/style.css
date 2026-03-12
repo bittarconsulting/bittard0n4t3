@@ -139,11 +139,16 @@ body {
 }
 
 .brand-logo {
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
   border-radius: 12px;
   object-fit: contain;
   margin-bottom: 24px;
+}
+
+.logo-container {
+  display: block;
+  text-align: center;
 }
 
 .card-header h1 {
