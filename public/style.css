@@ -130,6 +130,7 @@ h1, h2, h3, h4, h5, h6, .selection-title {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
 .card-header p {
