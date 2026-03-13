@@ -122,16 +122,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         setSubmitState('loading');
         
         try {
-            const response = await fetch('/create-payment-intent', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: currentAmount, type: currentType }),
-            });
-
-            const { clientSecret, customerId, paymentIntentId } = await response.json();
-            currentCustomerId = customerId || null;
-            currentPaymentIntentId = paymentIntentId || null;
-
             // Premium Stripe Appearance options to match our darker CSS theme
             // colorBackground must be hex, rgb or hsl
             const appearance = {
@@ -158,7 +148,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             };
 
-            elements = stripe.elements({ clientSecret, appearance });
+            // Use Deferred Intent Creation setup
+            const elementsOptions = {
+                mode: type === 'monthly' ? 'subscription' : 'payment',
+                amount: Math.round(currentAmount * 100),
+                currency: 'usd',
+                appearance: appearance,
+            };
+            
+            // For monthly, we don't pass an amount in the same way because subscription amounts are defined on the price,
+            // but Stripe Elements deferred intent still requires an amount to display correctly if there are UI components
+            // that rely on it. If type === 'monthly', we need 'subscription' mode.
+
+            elements = stripe.elements(elementsOptions);
             
             // 1. Express Checkout Element (Apple Pay / Google Pay)
             const expressCheckoutOptions = {
@@ -239,44 +241,54 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         setSubmitState('loading');
         
-        // Update customer and payment intent before confirming
-        if (donorName || donorEmail) {
-            try {
-                await fetch('/update-payment-info', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        customerId: currentCustomerId, 
-                        paymentIntentId: currentPaymentIntentId, 
-                        name: donorName, 
-                        email: donorEmail 
-                    }),
-                });
-            } catch(err) {
-                console.error('Failed to update customer info', err);
-            }
-        }
-        
-        const { error } = await stripe.confirmPayment({
-            elements,
-            confirmParams: {
-                // Determine the success URL locally
-                return_url: `${window.location.origin}/success.html`,
-            },
-        });
+        try {
+            // 1. Create the PaymentIntent or Subscription now that the user hit submit
+            const response = await fetch('/create-payment-intent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    amount: currentAmount, 
+                    type: currentType,
+                    name: donorName,
+                    email: donorEmail
+                }),
+            });
 
-        // This point will only be reached if there is an immediate error during processing.
-        // Otherwise, it redirects to the success page.
-        if (error) {
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to initialize payment');
+            }
+
+            const { clientSecret } = await response.json();
+
+            // 2. Confirm the payment using the newly generated client secret
+            const { error } = await stripe.confirmPayment({
+                elements,
+                clientSecret, // Pass the secret we just generated
+                confirmParams: {
+                    // Determine the success URL locally
+                    return_url: `${window.location.origin}/success.html`,
+                },
+            });
+
+            // This point will only be reached if there is an immediate error during processing.
+            if (error) {
+                const messageContainer = document.querySelector('#payment-message');
+                messageContainer.textContent = error.message;
+                messageContainer.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    messageContainer.classList.add('hidden');
+                }, 6000);
+                
+                setSubmitState('ready');
+            }
+
+        } catch (err) {
+            console.error('Payment submission failed:', err);
             const messageContainer = document.querySelector('#payment-message');
-            messageContainer.textContent = error.message;
+            messageContainer.textContent = err.message || "An unexpected error occurred.";
             messageContainer.classList.remove('hidden');
-            
-            // Auto hide
-            setTimeout(() => {
-                messageContainer.classList.add('hidden');
-            }, 6000);
-            
             setSubmitState('ready');
         }
     });

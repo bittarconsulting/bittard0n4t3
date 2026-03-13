@@ -19,15 +19,21 @@ app.get('/config', (req, res) => {
 
 app.post('/create-payment-intent', async (req, res) => {
   try {
-    const { amount, type } = req.body;
+    const { amount, type, name, email } = req.body;
     let clientSecret;
     let paymentIntentId;
     let customerId = null;
     
+    // Create or find a customer
+    const customerData = {};
+    if (name) customerData.name = name;
+    if (email) customerData.email = email;
+    
+    // Always create a customer to track donations easily in the dashboard
+    const customer = await stripe.customers.create(customerData);
+    customerId = customer.id;
+
     if (type === 'monthly') {
-        // Create a new Customer object representing the donor
-        const customer = await stripe.customers.create();
-        
         // Stripe subscriptions require an existing product ID in price_data, 
         // unlike Checkout which allows inline product_data.
         let products = await stripe.products.list({ limit: 100, active: true });
@@ -71,12 +77,13 @@ app.post('/create-payment-intent', async (req, res) => {
         
         clientSecret = invoice.payment_intent.client_secret;
         paymentIntentId = invoice.payment_intent.id;
-        customerId = customer.id;
     } else {
         // Create a definitive PaymentIntent for one-time donations
         const paymentIntent = await stripe.paymentIntents.create({
           amount: Math.round(amount * 100),
           currency: 'usd',
+          customer: customer.id,
+          receipt_email: email || undefined,
           payment_method_types: ['card', 'link', 'crypto'],
         });
         
