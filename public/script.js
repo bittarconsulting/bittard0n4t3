@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Use Deferred Intent Creation setup
             const elementsOptions = {
-                mode: type === 'monthly' ? 'subscription' : 'payment',
+                mode: currentType === 'monthly' ? 'subscription' : 'payment',
                 amount: Math.round(currentAmount * 100),
                 currency: 'usd',
                 appearance: appearance,
