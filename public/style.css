@@ -126,10 +126,7 @@ h1, h2, h3, h4, h5, h6, .selection-title {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 12px;
-  background: linear-gradient(to right, #fff, #a5b4fc);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
   white-space: nowrap;
 }
 
