@@ -84,7 +84,7 @@ app.post('/create-payment-intent', async (req, res) => {
           currency: 'usd',
           customer: customer.id,
           receipt_email: email || undefined,
-          payment_method_types: ['card', 'link', 'crypto'],
+          payment_method_types: ['card', 'link', 'paypal'],
         });
         
         clientSecret = paymentIntent.client_secret;
