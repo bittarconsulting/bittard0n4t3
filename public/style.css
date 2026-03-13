@@ -119,6 +119,7 @@ body {
 h1, h2, h3, h4, h5, h6, .selection-title {
   font-family: 'Oswald', sans-serif;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .card-header h1 {
