@@ -243,6 +243,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         setSubmitState('loading');
         
         try {
+            // Trigger form validation and wallet collection immediately 
+            // per Stripe Deferred Intent requirements before any async code.
+            const { error: submitError } = await elements.submit();
+            if (submitError) {
+                throw new Error(submitError.message);
+            }
+
             // 1. Create the PaymentIntent or Subscription now that the user hit submit
             const response = await fetch('/create-payment-intent', {
                 method: 'POST',
