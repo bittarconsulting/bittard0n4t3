@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 amount: Math.round(currentAmount * 100),
                 currency: 'usd',
                 appearance: appearance,
-                paymentMethodTypes: ['card', 'link', 'crypto'], // Restringir los metodos permitidos frontend
+                paymentMethodTypes: currentType === 'monthly' ? ['card', 'link'] : ['card', 'link', 'crypto'],
             };
             
             // For monthly, we don't pass an amount in the same way because subscription amounts are defined on the price,
